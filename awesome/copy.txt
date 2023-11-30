@@ -8,11 +8,6 @@ os.execute("setxkbmap -layout 'us,ru' -variant 'winkeys' -option 'grp:alt_shift_
 -- Standard awesome library
 local gears = require("gears")
 local awful = require("awful")
-local vicious = require("vicious")
-local calendar_widget = require("awesome-wm-widgets.calendar-widget.calendar")
-local todo_widget = require("awesome-wm-widgets.todo-widget.todo")
-local fs_widget = require("awesome-wm-widgets.fs-widget.fs-widget")
-local ram_widget = require("awesome-wm-widgets.ram-widget.ram-widget")
 require("awful.autofocus")
 -- Widget and layout library
 local wibox = require("wibox")
@@ -27,22 +22,6 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 require("awful.hotkeys_popup.keys")
 local volume_widget = require('awesome-wm-widgets.volume-widget.volume')
 local net_widgets = require("net_widgets")
-
-local quake = require("quake")
-
-local quakeconsole = quake {
-    name = "QuakeConsole",
-    height = 0.25,
-    width = 1,
-    vert = "top",
-    horiz = "left",
-    border = 1,
-    visible = false,
-    followtag = false,
-    overlap = false,
-    screen = awful.screen.focused(),
-    -- Additional settings if needed
-}
 
 --local net_widgets = require("net_widgets")
 
@@ -83,27 +62,8 @@ net_wireless = net_widgets.wireless({interface="wlp1s0", indent=0})
 
 -- This is used later as the default terminal and editor to run.
 terminal = "x-terminal-emulator"
-editor = os.getenv("vim") or "vim"
+editor = os.getenv("EDITOR") or "editor"
 editor_cmd = terminal .. " -e " .. editor
---{{{ Separator Widget
-separator = wibox.widget.textbox()
-separator.text = "  "
---}}}
-
---{{{ CPU Widget
-cpuwidget = wibox.widget.textbox()
-vicious.register(cpuwidget, vicious.widgets.cpu, "Cpu: $1%")
---}}}
-
---{{{ CPU Thermal Widget
-cputhermalwidget = wibox.widget.textbox()
-vicious.register(cputhermalwidget, vicious.widgets.thermal, "CPU: $1 °C", 20,  {"coretemp.0", "core"})
---}}}
-
-memwidget = wibox.widget.textbox()
-vicious.register(memwidget, vicious.widgets.mem, "Ram: $2Mb", 13)
---}}}
-
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -175,21 +135,6 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 -- {{{ Wibar
 -- Create a textclock widget
 mytextclock = wibox.widget.textclock()
-local cw = calendar_widget()
--- or customized
-local cw = calendar_widget({
-    theme = 'outrun',
-    placement = 'top_right',
-    start_sunday = true,
-    radius = 8,
--- with customized next/previous (see table above)
-    previous_month_button = 1,
-    next_month_button = 3,
-})
-mytextclock:connect_signal("button::press",
-    function(_, _, _, button)
-        if button == 1 then cw.toggle() end
-    end)
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
@@ -295,27 +240,12 @@ awful.screen.connect_for_each_screen(function(s)
             -- customized
             net_wireless,
 
-			separator,
-            todo_widget(),
-            fs_widget({ mounts = { '/', '/mnt/music' } }),
-			separator,
-			cpuwidget,
-			separator,
-			cputhermalwidget,
-			separator,
-			hddtempwidget,
-			separator,
-            ram_widget(),
-			memwidget,
-			separator,
             volume_widget{
                 widget_type = 'icon_and_text'
             },
 
             mykeyboardlayout,
-			separator,
             wibox.widget.systray(),
-			separator,
             mytextclock,
             s.mylayoutbox,
         },
@@ -333,9 +263,6 @@ root.buttons(gears.table.join(
 
 -- {{{ Key bindings
 globalkeys = gears.table.join(
-
-    awful.key({ modkey }, "/", function () quakeconsole:toggle() end,
-          {description = "Toggle Quake Console", group = "awesome"}),
 
     awful.key({ modkey }, "]", function() volume_widget:inc() end),
     awful.key({ modkey }, "[", function() volume_widget:dec() end),
@@ -672,7 +599,5 @@ end)
 
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
-
-beautiful.useless_gap = 3
 -- }}}
 
