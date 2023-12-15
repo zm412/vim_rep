@@ -1,18 +1,20 @@
-
 source $VIMRUNTIME/defaults.vim
 "original VIMRC
 set number
+"set relativenumber
 set tabstop=4
 set shiftwidth=4
 syntax on
-"colorscheme torte 
-colorscheme zellner 
+colorscheme torte 
+set foldcolumn={15} "Боковая колонка со свёрнутыми блоками. Чем больше n, тем больше свёрнутых блоков показано в колонке, а для остальных указано число.
+"colorscheme github
 set hlsearch                   "подсветка результатов поиска
 set ls=2                    "строка состояния с путем к файлу
 set mouse=
 set belloff=all            "отключение пиликания
 set list   "отображение табуляции и переноса строки
-
+set foldenable  "включаем сворачивание блоков
+set foldmethod=indent "(сворачивание на основании отступов в начале строк)
 "горячие клавиши на русской раскладке
 set langmap=ролдуиРОЛД;hjklebHJKL
 set keymap=russian-jcukenwin
@@ -26,6 +28,8 @@ highlight lCursor guifg=NONE guibg=Cyan
 "yaml settings 
 au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+autocmd VimLeavePre * silent mksession! ~/.vim/lastSession.vim       "Сохранение
+сессии в файле
 "
 let g:javascript_plugin_jsdoc = 1
 
@@ -83,6 +87,7 @@ Plug 'kien/ctrlp.vim'      "позволяет искать файл по кра
 Plug  'moll/vim-node'      "позволяет искать файл по краткому пути
 Plug 'mattn/emmet-vim'    "emmet for html
 Plug 'pangloss/vim-javascript'
+Plug 'itchyny/calendar.vim'
 Plug 'jbgutierrez/vim-babel'
 Plug 'lsdr/monokai'
 Plug 'leafgarland/typescript-vim' 
@@ -90,18 +95,36 @@ Plug 'vimwiki/vimwiki'
 Plug 'airblade/vim-gitgutter'
 Plug 'mattn/webapi-vim'
 Plug 'tpope/vim-surround'
+Plug 'majutsushi/tagbar'
 Plug 'mrk21/yaml-vim'
 Plug 'yegappan/taglist'     "\:Tlist откроет все названия функций в левом окне
 Plug 'klen/python-mode'	        " Python mode (docs, refactor, lints, highlighting, run and ipdb and more)
+Plug 'jreybert/vimagit'       "Отслеживание изменений в репозитории гит
+Plug 'idanarye/vim-merginal'   "Контроль веток гита
+Plug 'tpope/vim-fugitive' "работа с гит
+Plug 'ap/vim-css-color'  "подсветка цветов css 
+Plug 'joukevandermaas/vim-ember-hbs'
+Plug 'eslint/eslint'
+Plug 'stefanoverna/vim-i18n'
 
 
 call plug#end()                         "Перестать это делать
 
 let g:mapleader=','   "наша лидер кей будет запятая
 "colorscheme murphy
+"colorscheme slate
 
 "настройки для заметок. папки и файлы
-let g:nv_search_paths = ['~/wiki', './notes.md']
+"',' - leader key. Проверить текущий лидер - :echo leader
+let g:nv_search_paths = ['~/wiki', './vimwiki' ,'./notes.md']
+
+let g:vimwiki_use_mouse = 1
+let g:vimwiki_folding = 1
+let g:vimwiki_fold_lists = 1
+let g:vimwiki_use_calendar = 1
+let g:vimwiki_dir_link = 'index'
+let g:vimwiki_browsers = ['firefox']
+
 
 map <C-n> : NERDTreeToggle<CR>
 map <Leader><Plug>(easymotion-prefix)
@@ -114,10 +137,6 @@ augroup vimrc_autocmds
     autocmd FileType ruby,python,javascript,c,cpp match Excess /\%120v.*/
     autocmd FileType ruby,python,javascript,c,cpp set nowrap
 augroup END
-
-
-
-
 " настройки Vim-Airline
 set laststatus=2
 let g:airline_theme='badwolf'
@@ -126,7 +145,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 
 " TagBar настройки
-map <F4> :TagbarToggle<CR>
+map <F8> :TagbarToggle<CR>
 let g:tagbar_autofocus = 0 " автофокус на Tagbar при открытии
 
 " TaskList настройки
@@ -141,7 +160,7 @@ syntax on
 if has("gui_running")
 " GUI? устаналиваем тему и размер окна
   set lines=50 columns=125
-  colorscheme molokai
+"colorscheme torte
 " раскомментируйте эти строки, если хотите, чтобы NERDTree/TagBar автоматически отображались при запуске vim
 " autocmd vimenter * TagbarToggle
 " autocmd vimenter * NERDTree
