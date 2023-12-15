@@ -114,6 +114,11 @@ let g:mapleader=','   "наша лидер кей будет запятая
 "colorscheme murphy
 "colorscheme slate
 
+let g:vimwiki_listsyms = ' ✗✓'
+" [✗] взято в работу gln
+" [✓] завершено на моем уровне ctrlSpace
+" [-] приостановленно glx
+
 "настройки для заметок. папки и файлы
 "',' - leader key. Проверить текущий лидер - :echo leader
 let g:nv_search_paths = ['~/wiki', './vimwiki' ,'./notes.md']
