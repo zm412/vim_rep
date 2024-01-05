@@ -63,13 +63,25 @@ syntax enable                 "Включает подсветку синтак�
 "let g:netrw_banner = 0
 
 let g:gitgutter_enabled = 1 "активация гитгуттера
-let g:gitgutter_diff_base = 'master' "для сравнения с main - надо изменить строку
-let g:gitgutter_sign_added = '█|'
-let g:gitgutter_sign_modified = '█⫶'
-let g:gitgutter_sign_removed = '█▁'
+let g:gitgutter_diff_base = 'master'
+let g:gitgutter_sign_added = '➕'    " Пример символа для добавленных строк
+let g:gitgutter_sign_modified = '✏️' " Пример символа для измененных строк
+let g:gitgutter_sign_removed = '❌'  " Пример символа для удаленных строк
+
 let g:gitgutter_sign_removed_first_line = '█▔'
 let g:gitgutter_sign_modified_removed = "█▟"
 set updatetime=100    "для гитгуттера - ускоряет отклик
+
+let g:ale_linters = {
+      \ 'javascript': ['eslint'],
+      \ 'typescript': ['eslint'],
+      \ 'typescriptreact': ['eslint'],
+      \ }
+
+"Для проверки линта локально
+let g:ale_javascript_eslint_executable = 'node_modules/.bin/eslint'
+let g:ale_typescript_eslint_executable = 'node_modules/.bin/eslint'
+let g:ale_typescriptreact_eslint_executable = 'node_modules/.bin/eslint'
 
 
 if empty(glob("~/.vim/autoload/plug.vim"))
@@ -94,8 +106,8 @@ Plug 'jbgutierrez/vim-babel'
 Plug 'lsdr/monokai'
 Plug 'leafgarland/typescript-vim' 
 Plug 'vimwiki/vimwiki'
-Plug 'scrooloose/nerdtree'
-Plug 'xuyuanp/nerdtree-git-plugin' "nerdTree для гита
+Plug 'vsushkov/vim-phpcs'
+Plug 'dense-analysis/ale'
 Plug 'airblade/vim-gitgutter'
 Plug 'mattn/webapi-vim'
 Plug 'tpope/vim-surround'
@@ -230,7 +242,5 @@ let g:pymode_folding = 0
 " возможность запускать код
 let g:pymode_run = 0
 
-" Disable choose first function/method at autocomplete
-let g:jedi#popup_select_first = 0
 " Disable choose first function/method at autocomplete
 let g:jedi#popup_select_first = 0
