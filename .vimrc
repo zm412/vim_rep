@@ -1,6 +1,7 @@
 source $VIMRUNTIME/defaults.vim
 "original VIMRC
 set number
+set shell=sh
 "set relativenumber
 set tabstop=4
 set shiftwidth=4
@@ -62,6 +63,7 @@ syntax enable                 "Включает подсветку синтак�
 "let g:netrw_banner = 0
 
 let g:gitgutter_enabled = 1 "активация гитгуттера
+let g:gitgutter_diff_base = 'master' "для сравнения с main - надо изменить строку
 let g:gitgutter_sign_added = '█|'
 let g:gitgutter_sign_modified = '█⫶'
 let g:gitgutter_sign_removed = '█▁'
@@ -92,6 +94,8 @@ Plug 'jbgutierrez/vim-babel'
 Plug 'lsdr/monokai'
 Plug 'leafgarland/typescript-vim' 
 Plug 'vimwiki/vimwiki'
+Plug 'scrooloose/nerdtree'
+Plug 'xuyuanp/nerdtree-git-plugin' "nerdTree для гита
 Plug 'airblade/vim-gitgutter'
 Plug 'mattn/webapi-vim'
 Plug 'tpope/vim-surround'
@@ -114,11 +118,6 @@ let g:mapleader=','   "наша лидер кей будет запятая
 "colorscheme murphy
 "colorscheme slate
 
-let g:vimwiki_listsyms = ' ✗✓'
-" [✗] взято в работу gln
-" [✓] завершено на моем уровне ctrlSpace
-" [-] приостановленно glx
-
 "настройки для заметок. папки и файлы
 "',' - leader key. Проверить текущий лидер - :echo leader
 let g:nv_search_paths = ['~/wiki', './vimwiki' ,'./notes.md']
@@ -129,6 +128,11 @@ let g:vimwiki_fold_lists = 1
 let g:vimwiki_use_calendar = 1
 let g:vimwiki_dir_link = 'index'
 let g:vimwiki_browsers = ['firefox']
+
+let g:vimwiki_listsyms = ' ✗✓'
+" [✗] взято в работу gln
+" [✓] завершено на моем уровне ctrlSpace
+" [-] приостановленно glx
 
 
 map <C-n> : NERDTreeToggle<CR>
@@ -226,5 +230,7 @@ let g:pymode_folding = 0
 " возможность запускать код
 let g:pymode_run = 0
 
+" Disable choose first function/method at autocomplete
+let g:jedi#popup_select_first = 0
 " Disable choose first function/method at autocomplete
 let g:jedi#popup_select_first = 0
