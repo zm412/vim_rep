@@ -126,6 +126,13 @@ Plug 'stefanoverna/vim-i18n'
 
 call plug#end()                         "Перестать это делать
 
+let g:ctrlp_by_filename = 1  "Поиск по имени файла (вместо полного пути по умолчанию)
+let g:ctrlp_root_markers = ['common, wp-content'] "Устанавливаем папку поиска
+let g:ctrlp_working_path_mode = 'rw'
+let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:10,results:10'
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)|node_modules$'
+"Устанавливаем места, где искать не нужно
+
 let g:mapleader=','   "наша лидер кей будет запятая
 "colorscheme murphy
 "colorscheme slate
@@ -242,5 +249,7 @@ let g:pymode_folding = 0
 " возможность запускать код
 let g:pymode_run = 0
 
+" Disable choose first function/method at autocomplete
+let g:jedi#popup_select_first = 0
 " Disable choose first function/method at autocomplete
 let g:jedi#popup_select_first = 0
