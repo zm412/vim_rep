@@ -29,6 +29,7 @@ local volume_widget = require('awesome-wm-widgets.volume-widget.volume')
 local net_widgets = require("net_widgets")
 
 local quake = require("quake")
+local batteryarc_widget = require("awesome-wm-widgets.batteryarc-widget.batteryarc")
 
 local quakeconsole = quake {
     name = "QuakeConsole",
@@ -297,6 +298,10 @@ awful.screen.connect_for_each_screen(function(s)
 
 			separator,
             todo_widget(),
+	batteryarc_widget({
+                show_current_level = true,
+                arc_thickness = 1,
+            }),
             fs_widget({ mounts = { '/', '/mnt/music' } }),
 			separator,
 			cpuwidget,
