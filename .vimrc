@@ -127,7 +127,11 @@ Plug 'stefanoverna/vim-i18n'
 call plug#end()                         "Перестать это делать
 
 let g:ctrlp_by_filename = 1  "Поиск по имени файла (вместо полного пути по умолчанию)
+<<<<<<< HEAD
+let g:ctrlp_root_markers = ['common, wp-content', 'new', 'myProjects'] "Устанавливаем папку поиска
+=======
 let g:ctrlp_root_markers = ['common, wp-content'] "Устанавливаем папку поиска
+>>>>>>> 603347f496bfe6faae630fd4c8fb6310e4fe814d
 let g:ctrlp_working_path_mode = 'rw'
 let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:10,results:10'
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)|node_modules$'
@@ -137,6 +141,8 @@ let g:mapleader=','   "наша лидер кей будет запятая
 "colorscheme murphy
 "colorscheme slate
 
+"Удаляет созданные файлы при использовании команды DDD
+g:magit_discard_untracked_do_delete=1
 "настройки для заметок. папки и файлы
 "',' - leader key. Проверить текущий лидер - :echo leader
 let g:nv_search_paths = ['~/wiki', './vimwiki' ,'./notes.md']
