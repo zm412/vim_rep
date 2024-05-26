@@ -32,8 +32,8 @@ local quake = require("quake")
 
 local quakeconsole = quake {
     name = "QuakeConsole",
-    height = 0.25,
-    width = 1,
+    height = 1,
+    width = 0.5,
     vert = "top",
     horiz = "left",
     border = 1,

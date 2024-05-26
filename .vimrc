@@ -5,6 +5,8 @@ set shell=sh
 "set relativenumber
 set tabstop=4
 set shiftwidth=4
+set showtabline=2
+set tabline=%#TabNum#%1T%* " Отображение номеров вкладок справа от названий
 syntax on
 colorscheme torte 
 set foldcolumn={15} "Боковая колонка со свёрнутыми блоками. Чем больше n, тем больше свёрнутых блоков показано в колонке, а для остальных указано число.
@@ -15,7 +17,15 @@ set mouse=
 set belloff=all            "отключение пиликания
 set list   "отображение табуляции и переноса строки
 set foldenable  "включаем сворачивание блоков
-set foldmethod=indent "(сворачивание на основании отступов в начале строк)
+"set foldmethod=indent "(сворачивание на основании отступов в начале строк)
+"set foldenable " отклключить фолдинг по умолчанию
+set foldmethod=syntax " определять блоки на основе синтаксиса файла
+"set foldmethod=indent " определять блоки на основе отступов
+"set foldnestmax=3       "deepest fold is 3 levels
+set foldcolumn=10 " показать полосу для управления сворачиванием
+"set foldlevel=1 " Первый уровень вложенности открыт, остальные закрыты
+"set foldopen=all " автоматическое открытие сверток при заходе в них
+"
 "горячие клавиши на русской раскладке
 set langmap=ролдуиРОЛД;hjklebHJKL
 set keymap=russian-jcukenwin
@@ -63,7 +73,8 @@ syntax enable                 "Включает подсветку синтак�
 "let g:netrw_banner = 0
 
 let g:gitgutter_enabled = 1 "активация гитгуттера
-let g:gitgutter_diff_base = 'master'
+"let g:gitgutter_diff_base = 'master'
+let g:gitgutter_diff_base = 'main'
 let g:gitgutter_sign_added = '➕'    " Пример символа для добавленных строк
 let g:gitgutter_sign_modified = '✏️' " Пример символа для измененных строк
 let g:gitgutter_sign_removed = '❌'  " Пример символа для удаленных строк
@@ -122,10 +133,10 @@ Plug 'ap/vim-css-color'  "подсветка цветов css
 Plug 'joukevandermaas/vim-ember-hbs'
 Plug 'eslint/eslint'
 Plug 'stefanoverna/vim-i18n'
-
+Plug 'junegunn/vim-easy-align'
+Plug 'terryma/vim-multiple-cursors'
 
 call plug#end()                         "Перестать это делать
-
 let g:ctrlp_by_filename = 1  "Поиск по имени файла (вместо полного пути по умолчанию)
 let g:ctrlp_root_markers = ['common, wp-content', 'new', 'myProjects'] "Устанавливаем папку поиска
 let g:ctrlp_working_path_mode = 'rw'
@@ -168,11 +179,11 @@ augroup vimrc_autocmds
     autocmd FileType ruby,python,javascript,c,cpp set nowrap
 augroup END
 " настройки Vim-Airline
-set laststatus=2
-let g:airline_theme='badwolf'
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#formatter = 'unique_tail'
+"set laststatus=2
+"let g:airline_theme='badwolf'
+"let g:airline_powerline_fonts = 1
+"let g:airline#extensions#tabline#enabled = 1
+"let g:airline#extensions#tabline#formatter = 'unique_tail'
 
 " TagBar настройки
 map <F8> :TagbarToggle<CR>
@@ -221,6 +232,12 @@ set switchbuf=useopen
 "let g:pymode_rope_complete_on_dot = 0
 "отключаем отстутпы в плагине тайпскрипт
 let g:typescript_indent_disable = 1
+
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
 
 " документация
 let g:pymode_doc = 0

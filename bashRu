@@ -1,0 +1,7 @@
+sudo apt-get update
+sudo apt-get install language-pack-ru
+Set Locale:
+Set the locale to Russian. Edit your ~/.xprofile or ~/.profile file and add the following lines:
+(vim ~/.xprofile)
+export LANG=ru_RU.UTF-8
+export LC_MESSAGES=ru_RU.UTF-8
