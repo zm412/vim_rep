@@ -29,6 +29,7 @@ local volume_widget = require('awesome-wm-widgets.volume-widget.volume')
 local net_widgets = require("net_widgets")
 
 local quake = require("quake")
+
 local batteryarc_widget = require("awesome-wm-widgets.batteryarc-widget.batteryarc")
 local quakeconsole = quake {
     name = "QuakeConsole",
@@ -296,6 +297,9 @@ awful.screen.connect_for_each_screen(function(s)
             net_wireless,
 
 			separator,
+            --xrandr widget
+
+			separator,
             todo_widget(),
             batteryarc_widget({
                 show_current_level = true,
@@ -337,7 +341,6 @@ root.buttons(gears.table.join(
 
 -- {{{ Key bindings
 globalkeys = gears.table.join(
-
     awful.key({ modkey }, "/", function () quakeconsole:toggle() end,
           {description = "Toggle Quake Console", group = "awesome"}),
 
