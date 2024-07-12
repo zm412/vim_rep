@@ -1,6 +1,7 @@
 source $VIMRUNTIME/defaults.vim
 "original VIMRC
 set number
+set clipboard=unnamedplus
 set shell=sh
 "set relativenumber
 set tabstop=4
@@ -106,6 +107,7 @@ call plug#begin('~/.vim/pack/plugins')       "Начать искать плаг
 packloadall        "загрузчик плагинов для вим версии выше 8, для версий ниже - использовать vim-plug PlugInstall
 
 Plug 'https://github.com/alok/notational-fzf-vim'                    "Заметки
+Plug 'yegappan/grep' 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }    "зависимости для заметок
 Plug 'jiangmiao/auto-pairs'    "добавляет парные скобки и прочее..
 Plug 'kien/ctrlp.vim'      "позволяет искать файл по краткому пути
