@@ -10,7 +10,6 @@ set showtabline=2
 set tabline=%#TabNum#%1T%* " Отображение номеров вкладок справа от названий
 syntax on
 colorscheme torte 
-set foldcolumn={15} "Боковая колонка со свёрнутыми блоками. Чем больше n, тем больше свёрнутых блоков показано в колонке, а для остальных указано число.
 "colorscheme github
 set hlsearch                   "подсветка результатов поиска
 set ls=2                    "строка состояния с путем к файлу
@@ -23,7 +22,6 @@ set foldenable  "включаем сворачивание блоков
 set foldmethod=syntax " определять блоки на основе синтаксиса файла
 "set foldmethod=indent " определять блоки на основе отступов
 "set foldnestmax=3       "deepest fold is 3 levels
-set foldcolumn=10 " показать полосу для управления сворачиванием
 "set foldlevel=1 " Первый уровень вложенности открыт, остальные закрыты
 "set foldopen=all " автоматическое открытие сверток при заходе в них
 "
