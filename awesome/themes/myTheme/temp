@@ -1,0 +1,34 @@
+local THEME_DIR = os.getenv("HOME") .. '/.config/awesome/themes/'
+local themes_path = THEME_DIR 
+local theme_assets = require("beautiful.theme_assets")
+local gears = require("gears")
+local awful = require("awful")
+
+-- inherit default theme
+local theme = dofile(themes_path.."default/theme.lua")
+
+-- Generate wallpaper:
+
+theme.tag_bg_images = {
+    "myTheme/1.jpg",
+    "myTheme/2.jpg",
+    "myTheme/3.jpg",
+    "myTheme/4.jpg",
+    "myTheme/5.jpg",
+    "myTheme/6.jpg",
+    "myTheme/7.jpg",
+    "myTheme/1.webp",
+    "myTheme/2.webp",
+    "myTheme/3.webp",
+}
+
+
+local wallpaper_bg = themes_path.."myTheme/5.jpg"
+local wallpaper_fg = '#fa8787'
+local wallpaper_alt_fg = '#7e5edc'
+
+theme.wallpaper = function(s)
+    return gears.wallpaper.maximized(wallpaper_bg, s)
+end
+
+return theme
