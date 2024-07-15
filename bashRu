@@ -5,3 +5,8 @@ Set the locale to Russian. Edit your ~/.xprofile or ~/.profile file and add the 
 (vim ~/.xprofile)
 export LANG=ru_RU.UTF-8
 export LC_MESSAGES=ru_RU.UTF-8
+
+set the locale ru. Edit .bashrc on home dir and add
+setxkbmap -layout 'us,ru' -variant 'winkeys' -option 'grp:alt_shift_toggle,grp_led:scroll,compose:menu'
+
+
