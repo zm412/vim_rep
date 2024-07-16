@@ -9,4 +9,11 @@ export LC_MESSAGES=ru_RU.UTF-8
 set the locale ru. Edit .bashrc on home dir and add
 setxkbmap -layout 'us,ru' -variant 'winkeys' -option 'grp:alt_shift_toggle,grp_led:scroll,compose:menu'
 
+Установка языка ру. Добавить в конец файла строку 
+ ~/setxkb.sh
 
+ Создать файл ~/setxkb.sh с содержимым
+#!/bin/sh
+setxkbmap -layout 'us,ru' -variant 'winkeys' -option 'grp:alt_shift_toggle,grp_led:scroll,compose:menu'
+
+ 
