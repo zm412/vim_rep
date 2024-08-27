@@ -25,6 +25,13 @@ set foldmethod=syntax " определять блоки на основе син
 "set foldlevel=1 " Первый уровень вложенности открыт, остальные закрыты
 "set foldopen=all " автоматическое открытие сверток при заходе в них
 "
+" Копировать в системный буфер обмена с помощью Ctrl+C
+vnoremap <C-c> "+y
+
+" Вставлять из системного буфера обмена с помощью Ctrl+V
+nnoremap <C-v> "+p
+inoremap <C-v> <C-r>+
+
 "горячие клавиши на русской раскладке
 set langmap=ролдуиРОЛД;hjklebHJKL
 set keymap=russian-jcukenwin
