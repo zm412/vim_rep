@@ -9,7 +9,6 @@ os.execute("setxkbmap -layout 'us,ru' -variant 'winkeys' -option 'grp:alt_shift_
 local gears = require("gears")
 local awful = require("awful")
 local vicious = require("vicious")
-local calendar_widget = require("awesome-wm-widgets.calendar-widget.calendar")
 local todo_widget = require("awesome-wm-widgets.todo-widget.todo")
 local fs_widget = require("awesome-wm-widgets.fs-widget.fs-widget")
 local ram_widget = require("awesome-wm-widgets.ram-widget.ram-widget")
@@ -179,21 +178,6 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 -- {{{ Wibar
 -- Create a textclock widget
 mytextclock = wibox.widget.textclock()
-local cw = calendar_widget()
--- or customized
-local cw = calendar_widget({
-    theme = 'outrun',
-    placement = 'top_right',
-    start_sunday = true,
-    radius = 8,
--- with customized next/previous (see table above)
-    previous_month_button = 1,
-    next_month_button = 3,
-})
-mytextclock:connect_signal("button::press",
-    function(_, _, _, button)
-        if button == 1 then cw.toggle() end
-    end)
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
